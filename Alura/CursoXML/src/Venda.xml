@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<venda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xsi:noNamespaceSchemaLocation="schemaVenda.xsd">
+  <formaDePagamento>Cartão</formaDePagamento>
+	<produtos>
+		<produto>
+			<nome>XBOX 360</nome>
+			<preco>699.99</preco>
+		</produto>
+		<produto>
+			<nome>Playstation 3</nome>
+			<preco>749.99</preco>
+		</produto>
+	</produtos>
+</venda>
