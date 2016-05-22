@@ -66,5 +66,6 @@
 <%-- 	<c:url value="/produto/formulario" var="urlProdutoFormulario" ></c:url> --%>
 <%-- 	<a href="${urlProdutoFormulario }">Adicionar um produto</a> --%>
 	<a href="<c:url value="/produto/formulario"/>"><fmt:message key="mensagem.novoProduto" /></a>
+	<c:import url="../_comum/rodape.jsp" />
 </body>
 </html>

@@ -20,5 +20,6 @@
 		Data de início da venda: <caelum:campoData id="dataInicioVenda" name="produto.dataInicioVenda" /><br />
 		<input type="submit" />
 	</form>
+	<c:import url="../_comum/rodape.jsp" />
 </body>
 </html>
