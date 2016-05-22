@@ -19,7 +19,7 @@
 			alert("Removido");
 		}
 	</script>
-
+	<h2><fmt:message key="mensagem.bemvindo" /></h2>
 	<h1>Produtos</h1>
 	<c:set var="nome" value="João da Silva" />
 	<c:out value="${nome}" />
@@ -65,6 +65,6 @@
 	</table>
 <%-- 	<c:url value="/produto/formulario" var="urlProdutoFormulario" ></c:url> --%>
 <%-- 	<a href="${urlProdutoFormulario }">Adicionar um produto</a> --%>
-	<a href="<c:url value="/produto/formulario"/>">Adicionar um produto</a>
+	<a href="<c:url value="/produto/formulario"/>"><fmt:message key="mensagem.novoProduto" /></a>
 </body>
 </html>

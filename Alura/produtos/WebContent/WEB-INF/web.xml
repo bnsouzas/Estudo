@@ -6,6 +6,8 @@
 	<context-param>
 		<param-name>br.com.caelum.vraptor.packages</param-name>
 		<param-value>br.com.caelum.produtos</param-value>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>messages</param-value>
 	</context-param>
 	<filter>
 		<filter-name>vraptor</filter-name>
