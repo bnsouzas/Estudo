@@ -16,6 +16,7 @@
 		function removeProduto(id){
 			$("#mensagem").load('<c:url value="/produto/remove"/>' + '?produto.id=' + id);
 			$("#produto" + id).remove();
+			alert("Removido");
 		}
 	</script>
 
@@ -23,34 +24,29 @@
 	<div id="mensagem"></div>
 	<table width="100%">
 		<tr>
+			<td>Ordem</td>
 			<td width="20%">Nome</td>
 			<td>Preco</td>
 			<td>Descricao</td>
 			<td>Data de Inicio da Venda</td>
-			<td>Usado?</td>
+<!-- 			<td>Usado?</td> -->
 			<td width="20%">Remover?</td>
 		</tr>
-		
-		<%
-			List<Produto> produtoList = (List<Produto>) request.getAttribute("produtoList");
-			for(Produto p : produtoList) {
-		%>
-		
-			<tr id="produto<%= p.getId() %>">
-				<td><%= p.getNome().toUpperCase() %></td>
-				<td><%= p.getPreco() %></td>
-				<td><%= p.getDescricao() %></td>
-				<td><%= p.getDataInicioVenda().getTime() %></td>
-				<% if(p.isUsado()) { %>
-				<td>Sim</td>
-				<% } else { %>
-				<td>Não</td>
-				<% } %>
-				<td><a href="#" onclick="return removeProduto(<%= p.getId() %>)">Remover</a></td>
+		<c:forEach var="p" items="${produtoList}" varStatus="st">
+			<tr id="produto${p.id}">
+				<td>${st.count }</td>
+				<td>${p.nome }</td>
+				<td>${p.preco }</td>
+				<td>${p.descricao }</td>
+				<td>${p.dataInicioVenda.time}</td>
+<%-- 				<% if(p.isUsado()) { %> --%>
+<!-- 				<td>Sim</td> -->
+<%-- 				<% } else { %> --%>
+<!-- 				<td>Não</td> -->
+<%-- 				<% } %> --%>
+				<td><a href="#" onclick="return removeProduto(${p.id})">Remover</a></td>
 			</tr>
-		<%
-			}
-		%>
+		</c:forEach>
 	</table>
 	<a href="/produtos/produto/formulario">Adicionar um produto</a>
 </body>
