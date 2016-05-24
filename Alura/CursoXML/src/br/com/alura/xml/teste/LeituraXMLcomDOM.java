@@ -1,4 +1,4 @@
-package br.com.alura.teste;
+package br.com.alura.xml.teste;
 
 import java.io.IOException;
 
@@ -11,9 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import br.com.alura.Model.Produto;
+import br.com.alura.xml.Model.Produto;
 
-public class Sistema {
+public class LeituraXMLcomDOM {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

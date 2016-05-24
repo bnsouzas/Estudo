@@ -1,4 +1,4 @@
-package br.com.alura.Model;
+package br.com.alura.xml.Model;
 
 public class Produto {
 
@@ -8,6 +8,9 @@ public class Produto {
 	public Produto(String nome, Double preco) {
 		this.nome = nome;
 		this.preco = preco;
+	}
+
+	public Produto() {
 	}
 
 	public String getNome() {
@@ -21,5 +24,13 @@ public class Produto {
 	@Override
 	public String toString() {
 		return "Nome: "+ this.nome + "\nPreço: " + this.preco + "\n";
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
 	}
 }
