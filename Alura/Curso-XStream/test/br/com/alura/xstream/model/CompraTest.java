@@ -1,6 +1,6 @@
 package br.com.alura.xstream.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,45 @@ import org.junit.Test;
 import com.thoughtworks.xstream.XStream;
 
 public class CompraTest {
+	private Compra compraComGeladeiraEFerro() {
+		List<Produto> produtos = new ArrayList<>();
+		Produto geladeira = geladeira();
+		Produto ferro = ferro();
+		produtos.add(geladeira);
+		produtos.add(ferro);
+		Compra compra = new Compra(15, produtos);
+		return compra;
+	}
+	
+
+	private Compra compraComDuasGeladeira() {
+		List<Produto> produtos = new ArrayList<>();
+		Produto geladeira = geladeira();
+		produtos.add(geladeira);
+		produtos.add(geladeira);
+		Compra compra = new Compra(15, produtos);
+		return compra;
+	}
+
+	private Produto ferro() {
+		Produto ferro = new Produto("ferro de passar",100.0,"ferro com vaporizador", 1588);
+		return ferro;
+	}
+
+	private Produto geladeira() {
+		Produto geladeira = new Produto("geladeira",1000.0,"geladeira duas portas", 1587);
+		return geladeira;
+	}
+
+	private XStream xstreamParaCompraEProduto() {
+		XStream xstream = new XStream();
+		xstream.alias("compra", Compra.class);
+		xstream.alias("produto", Produto.class);
+		xstream.aliasField("descrição", Produto.class, "descricao");
+		xstream.useAttributeFor(Produto.class, "codigo");
+		return xstream;
+	}
+	
 	@Test
 	public void deveSerializarCadaUmDosProdutosDeUmaCompra(){
 		String resultadoEsperado = "<compra>\n"+
@@ -65,33 +104,32 @@ public class CompraTest {
 		
 		assertEquals(compraEsperada,compraResultado);
 	}
-
-	private Compra compraComGeladeiraEFerro() {
-		List<Produto> produtos = new ArrayList<>();
-		Produto geladeira = geladeira();
-		Produto ferro = ferro();
-		produtos.add(geladeira);
-		produtos.add(ferro);
-		Compra compra = new Compra(15, produtos);
-		return compra;
-	}
-
-	private Produto ferro() {
-		Produto ferro = new Produto("ferro de passar",100.0,"ferro com vaporizador", 1588);
-		return ferro;
-	}
-
-	private Produto geladeira() {
-		Produto geladeira = new Produto("geladeira",1000.0,"geladeira duas portas", 1587);
-		return geladeira;
-	}
-
-	private XStream xstreamParaCompraEProduto() {
-		XStream xstream = new XStream();
-		xstream.alias("compra", Compra.class);
-		xstream.alias("produto", Produto.class);
-		xstream.aliasField("descrição", Produto.class, "descricao");
-		xstream.useAttributeFor(Produto.class, "codigo");
-		return xstream;
+	
+	@Test
+	public void deveGerarDuasgeladeiras(){
+		String resultadoEsperado = "<compra>\n"+
+			    "  <id>15</id>\n"+
+			    "  <produtos>\n"+
+			    "    <produto codigo=\"1587\">\n"+
+			    "      <nome>geladeira</nome>\n"+
+			    "      <preco>1000.0</preco>\n"+
+			    "      <descrição>geladeira duas portas</descrição>\n"+
+			    "    </produto>\n"+
+			    "    <produto codigo=\"1587\">\n"+
+			    "      <nome>geladeira</nome>\n"+
+			    "      <preco>1000.0</preco>\n"+
+			    "      <descrição>geladeira duas portas</descrição>\n"+
+			    "    </produto>\n"+
+			    "  </produtos>\n"+
+			    "</compra>";
+		
+		Compra compra = compraComDuasGeladeira();
+		
+		XStream xstream = xstreamParaCompraEProduto();
+		xstream.setMode(XStream.NO_REFERENCES);
+		String xmlGerado = xstream.toXML(compra);
+		
+		assertEquals(resultadoEsperado,xmlGerado);
+		
 	}
 }
