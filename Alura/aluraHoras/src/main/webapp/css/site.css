@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.validation-error{
+	display: block;
+	color: red;
+}
