@@ -3,6 +3,7 @@ package br.com.aluraSpringMVC.loja.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -45,6 +46,7 @@ public class ProdutoController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
+	@CacheEvict(value="produtosHome", allEntries=true)
 	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		System.out.println(sumario.getOriginalFilename());
 		if (result.hasErrors()){
@@ -71,4 +73,10 @@ public class ProdutoController {
 		return modelAndView;
 		
 	}
+	
+//	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+//	@ResponseBody
+//	public Produto detalheJson(@PathVariable int id){
+//		return produtoDao.find(id);
+//	}
 }
