@@ -37,6 +37,7 @@
 				<tr>
 					<th>Título</th>
 					<th>Descrição</th>
+					<th>Preços</th>
 					<th>Páginas</th>
 				</tr>
 			</thead>
@@ -45,6 +46,7 @@
 					<tr>
 						<td><a href="${s:mvcUrl('PC#detalhe').arg(0,p.id).build()}" >${p.titulo}</a></td>
 						<td>${p.descricao}</td>
+						<td>${p.precos}</td>
 						<td>${p.paginas}</td>
 					</tr>
 				</c:forEach>
