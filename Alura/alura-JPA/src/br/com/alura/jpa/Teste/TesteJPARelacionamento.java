@@ -30,7 +30,7 @@ public class TesteJPARelacionamento {
         EntityManager manager = new JPAUtil().getEntityManager();
 
         manager.getTransaction().begin();
-
+        
         manager.persist(conta);
         manager.persist(movimentacao);
 
